@@ -1,0 +1,26 @@
+{
+  "name": "charactersheets-schema",
+  "description": "Document format for character sheet requests",
+  "version": "0.9.0",
+  "main": "README.md",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "cd test; nodejs test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dyslexic-charactersheets/charactersheets-schema.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dyslexic-charactersheets/charactersheets-schema/issues"
+  },
+  "homepage": "https://github.com/dyslexic-charactersheets/charactersheets-schema",
+  "dependencies": {
+    "ajv": "^6.10.1",
+    "ajv-cli": "^3.0.0"
+  }
+}

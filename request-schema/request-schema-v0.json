@@ -1,0 +1,293 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Character Sheet",
+  "description": "A request to build a character sheet for a single character, a group, or another game element",
+  "type": "object",
+  "properties": {
+    "version": {
+      "enum": [
+        0
+      ]
+    },
+    "data": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/character"
+        },
+        {
+          "$ref": "#/definitions/party"
+        },
+        {
+          "$ref": "#/definitions/gm"
+        },
+        {
+          "$ref": "#/definitions/starship"
+        }
+      ],
+      "required": [
+        "type",
+        "attributes"
+      ],
+      "properties": {
+        "attributes": {
+          "type": "object",
+          "required": [
+            "game",
+            "language"
+          ]
+        }
+      }
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/definitions/character"
+          },
+          {
+            "$ref": "#/definitions/party"
+          },
+          {
+            "$ref": "#/definitions/starship"
+          },
+          {
+            "$ref": "#/definitions/attachment"
+          }
+        ],
+        "required": [
+          "type",
+          "attributes"
+        ]
+      }
+    }
+  },
+  "required": [
+    "data"
+  ],
+  "definitions": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]{6,}$"
+    },
+    "knownimage": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9/._-]+$"
+    },
+    "character": {
+      "type": "object",
+      "description": "A single character",
+      "properties": {
+        "type": {
+          "const": "character"
+        },
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "attributes": {
+          "type": "object",
+          "description": "A character's attributes",
+          "properties": {
+            "game": {
+              "enum": [
+                "pathfinder",
+                "pathfinder2",
+                "starfinder",
+                "dnd35"
+              ]
+            },
+            "language": {
+              "type": "string",
+              "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "game"
+          ],
+          "oneOf": [
+            {
+              "$ref": "#/definitions/dnd35Character"
+            },
+            {
+              "$ref": "#/definitions/pathfinderCharacter"
+            },
+            {
+              "$ref": "#/definitions/pathfinder2Character"
+            },
+            {
+              "$ref": "#/definitions/starfinderCharacter"
+            }
+          ]
+        },
+        "print": {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "string",
+              "pattern": "^#[a-z0-9]{6}$"
+            },
+            "color2": {
+              "type": "string",
+              "pattern": "^#[a-z0-9]{6}$"
+            },
+            "background": {
+              "type": "string"
+            },
+            "watermark": {
+              "type": "string"
+            }
+          }
+        },
+        "images": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              { "$ref": "#/definitions/id" },
+              { "$ref": "#/definitions/knownimage" }
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "attributes"
+      ]
+    },
+    "party": {
+      "type": "object",
+      "description": "A party full of characters",
+      "properties": {
+        "type": {
+          "const": "party"
+        },
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "game": {
+          "enum": [
+            "pathfinder",
+            "pathfinder2",
+            "starfinder",
+            "dnd35"
+          ]
+        },
+        "language": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+        },
+        "characters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/id"
+          }
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "game",
+        "characters"
+      ]
+    },
+    "gm": {
+      "type": "object",
+      "description": "A game master's pages",
+      "properties": {
+        "type": {
+          "const": "gm"
+        },
+        "id": {
+          "$ref": "#/definitions/id"
+        }
+      }
+    },
+    "starship": {
+      "type": "object",
+      "description": "A starship",
+      "properties": {
+        "type": {
+          "enum": [
+            "starship"
+          ]
+        },
+        "id": {
+          "$ref": "#/definitions/id"
+        }
+      }
+    },
+    "attachment": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "attachment"
+          ]
+        },
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "format": {
+          "enum": [
+            "image/jpeg",
+            "image/png"
+          ]
+        },
+        "data": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9+/]+=*$"
+        }
+      },
+      "required": [
+        "id",
+        "format",
+        "data"
+      ],
+      "additionalProperties ": false
+    },
+    "dnd35Character": {
+      "type": "object",
+      "properties": {
+        "game": {
+          "type": "string",
+          "const": "dnd35"
+        }
+      }
+    },
+    "pathfinderCharacter": {
+      "type": "object",
+      "properties": {
+        "game": {
+          "type": "string",
+          "const": "pathfinder"
+        }
+      },
+      "required": [
+        "game"
+      ]
+    },
+    "pathfinder2Character": {
+      "type": "object",
+      "properties": {
+        "game": {
+          "type": "string",
+          "const": "pathfinder2"
+        }
+      }
+    },
+    "starfinderCharacter": {
+      "type": "object",
+      "properties": {
+        "game": {
+          "type": "string",
+          "const": "starfinder"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://www.dyslexic-charactersheets.com/schemas/dnd35/dnd35-character.json",
+  "title": "Dungeons & Dragons 3.5 Edition Character",
+  "type": "object",
+  "properties": {
+    "game": { "type": "string", "const": "pathfinder" },
+    "class": {
+      "type": "array",
+      "items": { "$ref": "#/defs/ident" }
+    },
+    "printColour": { "type": "string", "pattern": "^#[a-z0-9]{6}$" },
+    "spellbookStyle": { "type": "string", "enum": [ "small", "normal", "large", "none" ]},
+    "skillsStyle": { "type": "string", "enum": [ "normal", "blank" ]},
+    "craftSkill": { "type": "string" },
+    "performSkill": { "type": "string" },
+    "professionSkill": { "type": "string" },
+    "miniSize": { "type": "string", "enum": [ "small", "medium", "large" ] },
+    "watermark": { "type": "string" }
+  },
+  "patternProperties": {
+    "^class.*Variant$": {
+      "$ref": "#/defs/ident"
+    },
+    "^option": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "game"
+  ],
+  "defs": {
+    "ident": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    }
+  }
+}

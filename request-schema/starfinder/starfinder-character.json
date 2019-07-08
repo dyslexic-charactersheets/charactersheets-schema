@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://www.dyslexic-charactersheets.com/schemas/starfinder/starfinder-character.json",
+  "title": "Starfinder Character",
+  "type": "object",
+  "properties": {
+    "game": { "type": "string", "const": "pathfinder2" },
+    "theme": { "$ref": "#/defs/ident" },
+    "class": {
+      "type": "array",
+      "items": { "$ref": "#/defs/ident" }
+    },
+    "spellbookStyle": { "type": "string", "enum": [ "small", "normal", "large", "none" ]},
+    "inventoryStyle": { "type": "string", "enum": [ "auto", "with", "without" ]},
+    "skillsStyle": { "type": "string", "enum": [ "normal", "blank" ]},
+    "professionSkill": { "type": "string" },
+    "miniSize": { "type": "string", "enum": [ "small", "medium", "large" ] },
+    "watermark": { "type": "string" }
+  },
+  "patternProperties": {
+    "^option": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "game"
+  ],
+  "defs": {
+    "ident": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    }
+  }
+}

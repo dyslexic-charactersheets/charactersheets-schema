@@ -11,13 +11,14 @@ See [the character sheet request schema](./) for general details. This file summ
     "ancestry": "ancestry-human",
     "ancestryHeritage": "heritage-half-elf",
     "ancestryFeats": [
-        
+        { "level": 1, "feat": "" }
     ]
 }
 ```
 
 - `ancestry`
 - `ancestryHeritage`: The selected heritage
+- `ancestryFeats`: A list of ancestry feats, at specific levels
 
 ### Example
 

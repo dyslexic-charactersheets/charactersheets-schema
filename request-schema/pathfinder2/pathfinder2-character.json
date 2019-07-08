@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://www.dyslexic-charactersheets.com/schemas/pathfinder2/pathfinder2-character.json",
+  "title": "Pathfinder 2nd Edition Character",
+  "type": "object",
+  "properties": {
+    "game": { "type": "string", "const": "pathfinder2" },
+    "ancestry": { "$ref": "#/defs/ident" },
+    "ancestryHeritage": { "$ref": "#/defs/ident" },
+    "ancestryFeats": { "$ref": "#/defs/feats" },
+    "background": { "$ref": "#/defs/ident" },
+    "class": { "$ref": "#/defs/ident" },
+    "feats": { "$ref": "#/defs/feats" },
+    "skillFeats": { "$ref": "#/defs/feats" },
+    "printColour": { "$ref": "#/defs/colour" }
+  },
+  "patternProperties": {
+    "^class.*Feats$": {
+      "$ref": "#/defs/feats"
+    },
+    "^option": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "game"
+  ],
+  "defs": {
+    "ident": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "colour": {
+      "type": "string",
+      "pattern": "^#[0-9A-F]{6}$"
+    },
+    "feats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "feat": {
+            "$ref": "#/defs/ident"
+          }
+        },
+        "required": [
+          "level",
+          "feat"
+        ]
+      }
+    }
+  }
+}

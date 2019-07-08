@@ -4,7 +4,10 @@ A document format for conveying a request to generate a character sheet. This is
 
 The format is open-ended, allowing new fields to be added as the game evolves. Details depend on the specific game. See [the game data schema](../game-data.schema) and specific game systems for more details:
 
+- [Pathfinder 1st Edition](./pathfinder)
 - [Pathfinder 2nd Edition](./pathfinder2)
+- [Starfinder](./starfinder)
+- [Dungeons & Dragond 3.5](./dnd35)
 
 ## Wrapper
 

@@ -55,7 +55,13 @@ Dyslexic Character Sheets are published under the Artistic License 2.0. Any tech
 
 # Design
 
-This specification defines a JSON format using [JSON Schema](http://json-schema.org/). It uses a convention similar to that used by [JSON-API](https://jsonapi.org/).
+There are two steps to validating a document:
+
+1. A schema to check basic structure.
+
+2. Checking fields and values against the game data.
+
+The schema is defined using [JSON Schema](http://json-schema.org/). It uses a convention similar to that used by [JSON-API](https://jsonapi.org/).
 
 ## Nouns
 

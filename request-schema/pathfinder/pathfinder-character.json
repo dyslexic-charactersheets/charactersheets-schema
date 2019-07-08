@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "https://www.dyslexic-charactersheets.com/schemas/pathfinder/pathfinder-character.json",
+  "title": "Pathfinder Character",
+  "type": "object",
+  "properties": {
+    "game": { "type": "string", "const": "pathfinder" },
+    "theme": { "$ref": "#/defs/ident" },
+    "class": {
+      "type": "array",
+      "items": { "$ref": "#/defs/ident" }
+    },
+    "printColour": { "type": "string", "pattern": "^#[a-z0-9]{6}$" },
+    "optionPermission": { "type": "boolean" },
+    "spellbookStyle": { "type": "string", "enum": [ "small", "normal", "large", "none" ]},
+    "inventoryStyle": { "type": "string", "enum": [ "auto", "with", "without" ]},
+    "skillsStyle": { "type": "string", "enum": [ "normal", "blank" ]},
+    "craftSkill": { "type": "string" },
+    "performSkill": { "type": "string" },
+    "professionSkill": { "type": "string" },
+    "miniSize": { "type": "string", "enum": [ "small", "medium", "large" ] },
+    "watermark": { "type": "string" }
+  },
+  "patternProperties": {
+    "^class.*Archetype$": {
+      "$ref": "#/defs/ident"
+    },
+    "^option": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "game"
+  ],
+  "defs": {
+    "ident": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    }
+  }
+}

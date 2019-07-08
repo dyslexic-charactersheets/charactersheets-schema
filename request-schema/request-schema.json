@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "title": "Character Sheet",
+  "$id": "https://www.dyslexic-charactersheets.com/schemas/request-schema.json",
+  "title": "Character Sheet Request",
   "description": "A request to build a character sheet for a single character, a group, or another game element",
   "type": "object",
   "properties": {
@@ -111,16 +112,16 @@
           ],
           "oneOf": [
             {
-              "$ref": "#/definitions/dnd35Character"
+              "$ref": "dnd35/dnd35-character.json"
             },
             {
-              "$ref": "#/definitions/pathfinderCharacter"
+              "$ref": "pathfinder/pathfinder-character.json"
             },
             {
-              "$ref": "#/definitions/pathfinder2Character"
+              "$ref": "pathfinder2/pathfinder2-character.json"
             },
             {
-              "$ref": "#/definitions/starfinderCharacter"
+              "$ref": "starfinder/starfinder-character.json"
             }
           ]
         },
@@ -176,6 +177,9 @@
             "starfinder",
             "dnd35"
           ]
+        },
+        "name": {
+          "type": "string"
         },
         "language": {
           "type": "string",
@@ -249,45 +253,6 @@
         "data"
       ],
       "additionalProperties ": false
-    },
-    "dnd35Character": {
-      "type": "object",
-      "properties": {
-        "game": {
-          "type": "string",
-          "const": "dnd35"
-        }
-      }
-    },
-    "pathfinderCharacter": {
-      "type": "object",
-      "properties": {
-        "game": {
-          "type": "string",
-          "const": "pathfinder"
-        }
-      },
-      "required": [
-        "game"
-      ]
-    },
-    "pathfinder2Character": {
-      "type": "object",
-      "properties": {
-        "game": {
-          "type": "string",
-          "const": "pathfinder2"
-        }
-      }
-    },
-    "starfinderCharacter": {
-      "type": "object",
-      "properties": {
-        "game": {
-          "type": "string",
-          "const": "starfinder"
-        }
-      }
     }
   }
 }

@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/dyslexic-charactersheets/charactersheets-schema",
   "dependencies": {
-    "ajv": "^6.10.1",
+    "ajv": "^6.12.3",
     "ajv-cli": "^3.0.0"
   }
 }
